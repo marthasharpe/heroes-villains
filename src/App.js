@@ -3,20 +3,22 @@ import SearchBar from './components/SearchBar';
 import CharacterCard from './components/CharacterCard';
 import { Container, Row, Button } from 'react-bootstrap';
 
+const proxy = process.env.REACT_APP_API_URL;
+const key = process.env.REACT_APP_API_KEY;
+
 function App() {
   const [characterInfo, setCharacterInfo] = useState();
-  const [characterName, setCharacterName] = useState('supergirl');
+  const [characterName, setCharacterName] = useState('wonder_woman');
 
   const getCharacter = async () => {
     try {
       const response = await fetch(
-        `http://proxy-server.herokuapp.com/https://superheroapi.com/api/10104513882181015/search/${characterName}`
+        `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
       const json = await response.json();
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      console.log('response.error', response.error);
       setCharacterInfo(json);
     } catch (error) {
       console.log(error);
