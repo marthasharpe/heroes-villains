@@ -1,10 +1,11 @@
 import React from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 function SearchBar() {
   return (
-    <div className="SearchBar">
+    <Row className="justify-content-md-center">
       <h1>Search</h1>
-    </div>
+    </Row>
   );
 }
 
