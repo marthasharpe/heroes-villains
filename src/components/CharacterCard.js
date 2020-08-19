@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 function CharacterCard({ characterInfo }) {
-  if(characterInfo) console.log('characterInfo', characterInfo)
+  if (characterInfo) console.log('characterInfo', characterInfo);
   return (
-    <Row className="justify-content-md-center">
+    <Row className="justify-content-center">
       <h1>Character</h1>
     </Row>
   );
