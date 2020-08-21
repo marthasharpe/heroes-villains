@@ -1,11 +1,17 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Col, Image } from 'react-bootstrap';
 
 function CharacterCard({ characterInfo }) {
   console.log('characterInfo', characterInfo);
   return (
     <Row className="justify-content-center">
-      <h1>Character</h1>
+      <Col>
+        <Image src={characterInfo.image.url} alt="Superhero or Villain" />
+      </Col>
+      <Col>
+        <p>Name: {characterInfo.name}</p>
+        <p>Secret Identity: {characterInfo.biography['full-name']}</p>
+      </Col>
     </Row>
   );
 }
