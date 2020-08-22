@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Row, Button, Form } from 'react-bootstrap';
 
-function SearchBar({ setCharacterName, getCharacter }) {
+function SearchBar({ getCharacter, error, setError }) {
   const [input, setInput] = useState('');
 
   const handleChange = (e) => {
+    setError(null);
     setInput(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCharacterName(input);
-    getCharacter();
+    getCharacter(input);
     setInput('');
   };
 
@@ -20,14 +20,8 @@ function SearchBar({ setCharacterName, getCharacter }) {
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Search for a hero or villain!</Form.Label>
-          <Form.Control
-            placeholder="e.g. Superman"
-            value={input}
-            onChange={handleChange}
-          />
-          <Form.Text className="text-muted">
-            This will be an error message.
-          </Form.Text>
+          <Form.Control placeholder="e.g. Superman" value={input} onChange={handleChange} />
+          {error ? <Form.Text className="text-muted">{error}</Form.Text> : null}
         </Form.Group>
         <Button type="submit">Get Character</Button>
       </Form>

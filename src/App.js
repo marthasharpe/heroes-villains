@@ -8,21 +8,23 @@ const key = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [characterInfo, setCharacterInfo] = useState();
-  const [characterName, setCharacterName] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   console.log('characterInfo', characterInfo);
-  const getCharacter = async () => {
+
+  const getCharacter = async (characterName) => {
     try {
       const response = await fetch(
         `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
       const json = await response.json();
-      if (!response.ok) {
-        throw Error(response.statusText);
+      if (!response.ok || json.response === 'error') {
+        throw Error('Invalid name');
       }
       setCharacterInfo(json);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -31,13 +33,8 @@ function App() {
       <Row className="justify-content-center">
         <h1>Heroes and Villains</h1>
       </Row>
-      <SearchBar
-        setCharacterName={setCharacterName}
-        getCharacter={getCharacter}
-      />
-      {characterInfo ? (
-        <CharacterCard characterInfo={characterInfo.results[0]} />
-      ) : null}
+      <SearchBar error={error} setError={setError} getCharacter={getCharacter} />
+      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo.results[0]} /> : null}
     </Container>
   );
 }
