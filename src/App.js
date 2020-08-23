@@ -19,11 +19,15 @@ function App() {
       const response = await fetch(
         `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
-      const json = await response.json();
-      if (!response.ok || json.response === 'error') {
+      const data = await response.json();
+      if (!response.ok || data.response === 'error') {
         throw Error(`"${characterName}" not found. Try again!`);
       }
-      setCharacterInfo(json);
+      const filteredData = data.results.filter(
+        (item) => characterName.toLowerCase() === item.name.toLowerCase()
+      );
+      console.log('filteredData', filteredData);
+      setCharacterInfo(filteredData);
     } catch (err) {
       setError(err.message);
       setCharacterInfo(null);
@@ -42,7 +46,7 @@ function App() {
         setError={setError}
         getCharacter={getCharacter}
       />
-      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo.results[0]} /> : null}
+      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo[0]} /> : null}
     </Container>
   );
 }
