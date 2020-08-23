@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Row, Button, Form } from 'react-bootstrap';
+import { Row, Button, Form, Spinner } from 'react-bootstrap';
 
-function SearchBar({ getCharacter, error, setError }) {
+function SearchBar({ getCharacter, error, setError, isLoading }) {
   const [input, setInput] = useState('');
 
   const handleChange = (e) => {
@@ -21,9 +21,16 @@ function SearchBar({ getCharacter, error, setError }) {
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Search for a hero or villain!</Form.Label>
           <Form.Control placeholder="e.g. Superman" value={input} onChange={handleChange} />
-          {error ? <Form.Text className="text-muted">{error}</Form.Text> : null}
+          {error ? <Form.Text className="text-danger">{error}</Form.Text> : null}
         </Form.Group>
-        <Button type="submit">Get Character</Button>
+        {isLoading ? (
+          <Button variant="primary" disabled>
+            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+            Loading...
+          </Button>
+        ) : (
+          <Button type="submit">Get Character</Button>
+        )}
       </Form>
     </Row>
   );
