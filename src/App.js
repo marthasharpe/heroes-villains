@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import CharacterCard from './components/CharacterCard';
 import { Container, Row } from 'react-bootstrap';
+import SelectionModal from './components/SelectionModal';
 
 const proxy = process.env.REACT_APP_API_URL;
 const key = process.env.REACT_APP_API_KEY;
@@ -10,6 +11,8 @@ function App() {
   const [characterInfo, setCharacterInfo] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [characterList, setCharacterList] = useState(null);
 
   console.log('characterInfo', characterInfo);
 
@@ -26,8 +29,13 @@ function App() {
       const filteredData = data.results.filter(
         (item) => characterName.toLowerCase() === item.name.toLowerCase()
       );
+      setCharacterList(filteredData);
+      if (filteredData.length === 1) {
+        setCharacterInfo(filteredData[0]);
+      } else {
+        setShow(true);
+      }
       console.log('filteredData', filteredData);
-      setCharacterInfo(filteredData);
     } catch (err) {
       setError(err.message);
       setCharacterInfo(null);
@@ -46,7 +54,13 @@ function App() {
         setError={setError}
         getCharacter={getCharacter}
       />
-      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo[0]} /> : null}
+      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+      <SelectionModal
+        show={show}
+        setCharacterInfo={setCharacterInfo}
+        characterList={characterList}
+        setShow={setShow}
+      />
     </Container>
   );
 }
