@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 const SelectionModal = ({ show, setShow, setCharacterInfo, characterList }) => {
   const handleSelect = (e) => {
@@ -17,6 +17,9 @@ const SelectionModal = ({ show, setShow, setCharacterInfo, characterList }) => {
         {characterList
           ? characterList.map((character) => {
               return (
+                // <Form>
+                //   <Form.Check type="radio" checked={} label={`${character.biography['full-name']}`} />
+                // </Form>
                 <a id={character.id} onClick={handleSelect}>
                   {character.biography['full-name']}
                 </a>

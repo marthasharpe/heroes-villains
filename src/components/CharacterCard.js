@@ -1,7 +1,8 @@
 import React from 'react';
-import { Row, Col, Image } from 'react-bootstrap';
+import { Row, Col, Image, ProgressBar } from 'react-bootstrap';
 
 function CharacterCard({ characterInfo }) {
+  const powers = Object.keys(characterInfo.powerstats);
   return (
     <Row className="justify-content-center">
       <Col>
@@ -10,6 +11,14 @@ function CharacterCard({ characterInfo }) {
       <Col>
         <p>Name: {characterInfo.name}</p>
         <p>Secret Identity: {characterInfo.biography['full-name']}</p>
+        {powers.map((power) => (
+          <div style={{ padding: 10 }}>
+            <ProgressBar
+              now={characterInfo.powerstats[power]}
+              label={`${characterInfo.powerstats[power]}`}
+            />
+          </div>
+        ))}
       </Col>
     </Row>
   );
