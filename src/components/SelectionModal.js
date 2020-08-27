@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const SelectionModal = ({ show, setShow, setCharacterInfo, characterList }) => {
-  const handleSelect = (e) => {
-    let chosenOne = characterList.find((item) => item.id === e.target.id);
+  const [selectedItem, setSelectedItem] = useState();
+
+  const handleChange = (e) => {
+    setSelectedItem(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let chosenOne = characterList.find((item) => item.id === selectedItem);
     setCharacterInfo(chosenOne);
     setShow(false);
   };
@@ -14,24 +21,23 @@ const SelectionModal = ({ show, setShow, setCharacterInfo, characterList }) => {
         <Modal.Title>Which one?</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {characterList
-          ? characterList.map((character) => {
-              return (
-                // <Form>
-                //   <Form.Check type="radio" checked={} label={`${character.biography['full-name']}`} />
-                // </Form>
-                <a id={character.id} onClick={handleSelect}>
-                  {character.biography['full-name']}
-                </a>
-              );
-            })
-          : null}
+        <Form onSubmit={handleSubmit}>
+          {characterList
+            ? characterList.map((character) => {
+                return (
+                  <Form.Check
+                    type="radio"
+                    value={character.id}
+                    checked={selectedItem === character.id}
+                    label={`${character.biography['full-name']}`}
+                    onChange={handleChange}
+                  />
+                );
+              })
+            : null}
+          <Button type="submit">Submit</Button>
+        </Form>
       </Modal.Body>
-      <Modal.Footer>
-        {/* <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button> */}
-      </Modal.Footer>
     </Modal>
   );
 };
