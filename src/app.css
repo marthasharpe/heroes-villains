@@ -1,0 +1,30 @@
+.parent{
+    background-image: url('https://wallpapercave.com/wp/wp2903360.jpg');
+    color: #fff;
+    font-family: 'Bangers', cursive;
+    margin: 0;
+}
+
+
+.card{
+    background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    
+    height: 50vw;
+    width: 30vw;
+
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 50px 0 rgba(0,0,0,0.2);
+  }

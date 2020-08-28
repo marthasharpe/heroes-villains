@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar';
 import CharacterCard from './components/CharacterCard';
 import { Container, Row } from 'react-bootstrap';
 import SelectionModal from './components/SelectionModal';
+import './app.css';
 
 const proxy = process.env.REACT_APP_API_URL;
 const key = process.env.REACT_APP_API_KEY;
@@ -44,24 +45,28 @@ function App() {
   };
 
   return (
-    <Container fluid>
-      <Row className="justify-content-center">
-        <h1>Heroes and Villains</h1>
-      </Row>
-      <SearchBar
-        error={error}
-        isLoading={isLoading}
-        setError={setError}
-        getCharacter={getCharacter}
-      />
-      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
-      <SelectionModal
-        show={show}
-        setCharacterInfo={setCharacterInfo}
-        characterList={characterList}
-        setShow={setShow}
-      />
-    </Container>
+    <div className="parent">
+      <Container fluid className="col-xs-12 col-sm-4">
+        <div className='card'>
+          <Row>
+            <h1 className='title'>Heroes and Villains</h1>
+          </Row>
+          <SearchBar
+            error={error}
+            isLoading={isLoading}
+            setError={setError}
+            getCharacter={getCharacter}
+          />
+          {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+          <SelectionModal
+            show={show}
+            setCharacterInfo={setCharacterInfo}
+            characterList={characterList}
+            setShow={setShow}
+          />
+        </div>
+      </Container>
+    </div>
   );
 }
 
