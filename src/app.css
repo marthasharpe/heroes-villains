@@ -1,8 +1,11 @@
+
+
 .parent{
     background-image: url('https://wallpapercave.com/wp/wp2903360.jpg');
+    background-size: 100vh;
+    height: 100vh;
     color: #fff;
     font-family: 'Bangers', cursive;
-    margin: 0;
 }
 
 
@@ -12,14 +15,17 @@
     background-repeat: no-repeat;
     background-size: cover;
     
-    
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
-    
+
+    margin: auto;
+    position: relative;
+    text-align: center;
     height: 50vw;
     width: 30vw;
+    
 
     box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
@@ -27,4 +33,149 @@
 
 .card:hover {
     box-shadow: 0 8px 50px 0 rgba(0,0,0,0.2);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: relative;
+        text-align: center;
+        height: 70vh;
+        width: 50vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: relative;
+        text-align: center;
+        height: 95vh;
+        width: 50vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+  }
+
+  @media only screen and (min-width: 400px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: relative;
+        text-align: center;
+        height: 80vh;
+        width: 50vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: relative;
+        text-align: center; 
+        height: 95vh;
+        width: 60vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+  }
+
+  @media only screen and (min-height: 812px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: relative;
+        text-align: center;
+        height: 70vh;
+        width: 55vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+  }
+
+
+  @media only screen and (min-width: 1024px) and (max-height: 1366px) {
+    .card{
+        background-image: url('https://i.pinimg.com/originals/8d/46/de/8d46ded67330751cc8b2ed2fc7545bee.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+       
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    
+        position: center;
+        text-align: center;
+        height: 40vh;
+        width: 30vw;
+        
+    
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
   }
