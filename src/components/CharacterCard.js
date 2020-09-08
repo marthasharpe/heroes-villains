@@ -1,35 +1,46 @@
 import React from 'react';
-import { Row, Col, Image, ProgressBar } from 'react-bootstrap';
+import { Card, Row, Col, ProgressBar } from 'react-bootstrap';
+import './characterCard.css';
 
 function CharacterCard({ characterInfo }) {
   const powers = Object.keys(characterInfo.powerstats);
   console.log('powers', powers);
   return (
-    <Row className="justify-content-center">
-      <Col>
-        <Image src={characterInfo.image.url} alt="Superhero or Villain" />
-      </Col>
-      <Col>
-        <p>Name: {characterInfo.name}</p>
-        <p>Secret Identity: {characterInfo.biography['full-name']}</p>
-        <p>Power Stats:</p>
-        {powers.map((quality) => (
-          <Row>
-            <Col>
-              <p>{quality}</p>
-            </Col>
-            <Col md={8}>
-              <ProgressBar
-                now={characterInfo.powerstats[quality]}
-                label={`${characterInfo.powerstats[quality]}`}
-              />
-            </Col>
-            {/* <div style={{ width: 200 }}>
-            </div> */}
-          </Row>
-        ))}
-      </Col>
-    </Row>
+    <Card body className="character-card">
+      <Row className="mb-4 justify-content-center">
+        <Col>
+          <Card.Title style={{ fontSize: 30 }}>{characterInfo.name}</Card.Title>
+          <Card.Subtitle style={{ fontSize: 20 }}>
+            {characterInfo.biography['full-name']}
+          </Card.Subtitle>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} md={6}>
+          <Card.Img
+            className="card-image"
+            src={characterInfo.image.url}
+            alt="Superhero or Villain"
+          />
+        </Col>
+        <Col>
+          <p>Power Stats:</p>
+          {powers.map((quality) => (
+            <Row>
+              <Col>
+                <p>{quality}</p>
+              </Col>
+              <Col md={8}>
+                <ProgressBar
+                  now={characterInfo.powerstats[quality]}
+                  label={`${characterInfo.powerstats[quality]}`}
+                />
+              </Col>
+            </Row>
+          ))}
+        </Col>
+      </Row>
+    </Card>
   );
 }
 

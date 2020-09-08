@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import CharacterCard from './components/CharacterCard';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import SelectionModal from './components/SelectionModal';
+import './app.css';
 
 const proxy = process.env.REACT_APP_API_URL;
 const key = process.env.REACT_APP_API_KEY;
@@ -13,8 +14,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [characterList, setCharacterList] = useState(null);
-
-  console.log('characterInfo', characterInfo);
 
   const getCharacter = async (characterName) => {
     setIsLoading(true);
@@ -44,17 +43,23 @@ function App() {
   };
 
   return (
-    <Container fluid>
+    <Container style={{ padding: 30 }} fluid>
       <Row className="justify-content-center">
-        <h1>Heroes and Villains</h1>
+        <Col xs={12} sm={10} md={8} lg={6} xl={4}>
+          <Card className="search" body>
+            <Card.Title style={{ fontSize: 40 }}>Heroes and Villains</Card.Title>
+            <SearchBar
+              error={error}
+              isLoading={isLoading}
+              setError={setError}
+              getCharacter={getCharacter}
+            />
+          </Card>
+        </Col>
       </Row>
-      <SearchBar
-        error={error}
-        isLoading={isLoading}
-        setError={setError}
-        getCharacter={getCharacter}
-      />
-      {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+      <Row className="mt-3 justify-content-center">
+        {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+      </Row>
       <SelectionModal
         show={show}
         setCharacterInfo={setCharacterInfo}
