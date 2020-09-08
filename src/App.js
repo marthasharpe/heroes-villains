@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import CharacterCard from './components/CharacterCard';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import SelectionModal from './components/SelectionModal';
-import ResponsiveEmbed from 'react-bootstrap/ResponsiveEmbed';
 import './app.css';
 
 const proxy = process.env.REACT_APP_API_URL;
-const key = 100964191747940;
+const key = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [characterInfo, setCharacterInfo] = useState(null);
@@ -15,14 +14,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [characterList, setCharacterList] = useState(null);
- 
-  console.log('characterInfo', characterInfo);
 
   const getCharacter = async (characterName) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://superheroapi.com/api/${key}/search/${characterName}`
+        `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
       const data = await response.json();
       if (!response.ok || data.response === 'error') {
@@ -46,31 +43,31 @@ function App() {
   };
 
   return (
-    <div className='parent'>
-      <Container fluid>
-        <div className='card'>
-          <Row>
-            <h1 className='title'>Heroes and Villains</h1>
-          </Row>
-          <SearchBar
-            error={error}
-            isLoading={isLoading}
-            setError={setError}
-            getCharacter={getCharacter}
-          />
-          {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
-          <SelectionModal
-            show={show}
-            setCharacterInfo={setCharacterInfo}
-            characterList={characterList}
-            setShow={setShow}
-          />
-        </div>
-      </Container>
-    </div>
+    <Container style={{ padding: 30 }} fluid>
+      <Row className="justify-content-center">
+        <Col xs={12} sm={10} md={8} lg={6} xl={4}>
+          <Card className="search" body>
+            <Card.Title style={{ fontSize: 40 }}>Heroes and Villains</Card.Title>
+            <SearchBar
+              error={error}
+              isLoading={isLoading}
+              setError={setError}
+              getCharacter={getCharacter}
+            />
+          </Card>
+        </Col>
+      </Row>
+      <Row className="mt-3 justify-content-center">
+        {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+      </Row>
+      <SelectionModal
+        show={show}
+        setCharacterInfo={setCharacterInfo}
+        characterList={characterList}
+        setShow={setShow}
+      />
+    </Container>
   );
 }
 
 export default App;
-
-
