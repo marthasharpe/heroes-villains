@@ -19,7 +19,7 @@ function App() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
+        `http://proxy-server.herokuapp.com/https://superheroapi.com/api/10104513882181015/search/${characterName}`
       );
       const data = await response.json();
       if (!response.ok || data.response === 'error') {
