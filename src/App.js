@@ -22,7 +22,10 @@ function App() {
         `http://proxy-server.herokuapp.com/https://superheroapi.com/api/10104513882181015/search/${characterName}`
       );
       const data = await response.json();
-      if (!response.ok || data.response === 'error') {
+      if (!response.ok) {
+        throw Error('Oops! Something went wrong');
+      }
+      if (response.ok && data.response === 'error') {
         throw Error(`"${characterName}" not found. Try again!`);
       }
       const filteredData = data.results.filter(
