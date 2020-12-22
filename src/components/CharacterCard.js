@@ -4,10 +4,9 @@ import './characterCard.css';
 
 function CharacterCard({ characterInfo }) {
   const powers = Object.keys(characterInfo.powerstats);
-  console.log('powers', powers);
   return (
-    <Card body className="character-card">
-      <Row className="mb-4 justify-content-center">
+    <Card body className='character-card'>
+      <Row className='mb-4 justify-content-center'>
         <Col>
           <Card.Title style={{ fontSize: 30 }}>{characterInfo.name}</Card.Title>
           <Card.Subtitle style={{ fontSize: 20 }}>
@@ -18,15 +17,15 @@ function CharacterCard({ characterInfo }) {
       <Row>
         <Col xs={12} md={6}>
           <Card.Img
-            className="card-image"
+            className='card-image'
             src={characterInfo.image.url}
-            alt="Superhero or Villain"
+            alt='Superhero or Villain'
           />
         </Col>
         <Col>
           <p>Power Stats:</p>
           {powers.map((quality) => (
-            <Row>
+            <Row key={quality}>
               <Col>
                 <p>{quality}</p>
               </Col>

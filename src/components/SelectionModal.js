@@ -26,16 +26,17 @@ const SelectionModal = ({ show, setShow, setCharacterInfo, characterList }) => {
             ? characterList.map((character) => {
                 return (
                   <Form.Check
-                    type="radio"
+                    type='radio'
                     value={character.id}
                     checked={selectedItem === character.id}
                     label={`${character.biography['full-name']}`}
                     onChange={handleChange}
+                    key={character.id}
                   />
                 );
               })
             : null}
-          <Button type="submit">Submit</Button>
+          <Button type='submit'>Submit</Button>
         </Form>
       </Modal.Body>
     </Modal>

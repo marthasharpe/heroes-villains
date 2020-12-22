@@ -11,25 +11,29 @@ function SearchBar({ getCharacter, error, setError, isLoading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input) {
+      setError('Please type a character name.');
+      return;
+    }
     getCharacter(input);
     setInput('');
   };
 
   return (
-    <Row className="justify-content-center">
+    <Row className='justify-content-center'>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId='formBasicEmail'>
           <Form.Label>Search for a hero or villain!</Form.Label>
-          <Form.Control placeholder="e.g. Superman" value={input} onChange={handleChange} />
-          {error ? <Form.Text className="text-danger">{error}</Form.Text> : null}
+          <Form.Control placeholder='e.g. Superman' value={input} onChange={handleChange} />
+          {error ? <Form.Text className='text-danger'>{error}</Form.Text> : null}
         </Form.Group>
         {isLoading ? (
-          <Button variant="primary" disabled>
-            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+          <Button variant='primary' disabled>
+            <Spinner as='span' animation='border' size='sm' role='status' aria-hidden='true' />
             Loading...
           </Button>
         ) : (
-          <Button type="submit">Get Character</Button>
+          <Button type='submit'>Get Character</Button>
         )}
       </Form>
     </Row>

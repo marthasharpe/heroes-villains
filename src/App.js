@@ -19,7 +19,7 @@ function App() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://proxy-server.herokuapp.com/https://superheroapi.com/api/10104513882181015/search/${characterName}`
+        `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
       const data = await response.json();
       if (!response.ok) {
@@ -37,7 +37,6 @@ function App() {
       } else {
         setShow(true);
       }
-      console.log('filteredData', filteredData);
     } catch (err) {
       setError(err.message);
       setCharacterInfo(null);
@@ -46,10 +45,10 @@ function App() {
   };
 
   return (
-    <Container style={{ padding: 30 }} fluid>
-      <Row className="justify-content-center">
+    <Container style={{ padding: 30 }}>
+      <Row className='intro justify-content-center'>
         <Col xs={12} sm={10} md={8} lg={6} xl={4}>
-          <Card className="search" body>
+          <Card className='search' body>
             <Card.Title style={{ fontSize: 40 }}>Heroes and Villains</Card.Title>
             <SearchBar
               error={error}
@@ -60,7 +59,7 @@ function App() {
           </Card>
         </Col>
       </Row>
-      <Row className="mt-3 justify-content-center">
+      <Row className='mt-3 justify-content-center'>
         {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
       </Row>
       <SelectionModal
