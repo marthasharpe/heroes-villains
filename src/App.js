@@ -5,8 +5,8 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import SelectionModal from './components/SelectionModal';
 import './app.css';
 
-// const proxy = 'https://secure-atoll-22036.herokuapp.com/';
-// const key = 10104513882181015;
+const proxy = process.env.REACT_APP_API_URL;
+const key = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [characterInfo, setCharacterInfo] = useState(null);
@@ -19,7 +19,7 @@ function App() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://secure-atoll-22036.herokuapp.com/https://superheroapi.com/api/10104513882181015/search/${characterName}`
+        `${proxy}https://superheroapi.com/api/${key}/search/${characterName}`
       );
       const data = await response.json();
       if (!response.ok) {
