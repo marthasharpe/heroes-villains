@@ -60,7 +60,9 @@ function App() {
         </Col>
       </Row>
       <Row className='mt-3 justify-content-center'>
-        {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+        <Col md={12} lg={10}>
+          {characterInfo && !error ? <CharacterCard characterInfo={characterInfo} /> : null}
+        </Col>
       </Row>
       <SelectionModal
         show={show}
